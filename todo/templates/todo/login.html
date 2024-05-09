@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content%}
+    <h1 class="text-4xl font-bold text-center text-sky-950">Log In</h1>       
+    <div>
+        <form action="." method="POST" class="px-4 mx-auto">
+            {% csrf_token %}
+            <div class="mt-5 mb-5">
+                <label for="username" class="text-black text-lg">Username</label>        
+                <input type="text" name="username" class="w-full mt-2 px-4 py-2 rounded-xl text-black border-2 border-cyan-950">
+            </div>
+    
+            <div class="mb-5">
+                <label for="password" class="text-black text-lg">Password</label>       
+                <input type="password" name="password" class="w-full mt-2 px-4 py-2 rounded-xl text-black border-2 border-cyan-950">
+            </div>
+
+            <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Submit</button>
+        </form>
+
+    </div>
+    <p class="mt-6 w-full text-center">No account yet? Register<a href="{% url 'todo:register' %}" class="text-teal-700 font-bold hover:text-cyan-950"> here</a>.</p>
+{% endblock %}

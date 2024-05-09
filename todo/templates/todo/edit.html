@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content%}
+    <h1 class="text-4xl font-bold text-center text-sky-950">Edit Task</h1>
+        
+    <div>
+        <p class="px-4 text-center mt-4">Status: {% if task.is_done == False %} To do {% else %} Done {% endif %}</p>
+            
+
+        <form action="." method="POST" class="px-4 mx-auto">
+            {% csrf_token %}
+            <div class="mb-5">
+                <label class="text-black text-lg">Name</label>       
+                <input type="text" name="name" value="{{task.name}}" class="w-full mt-2 px-4 py-2 rounded-xl text-black border-2 border-cyan-950">
+            </div>
+
+            <div class="mt-5 mb-5">
+                <label for="description" class="text-black text-lg">Description</label> 
+                <textarea name="description" id="" cols="30" rows="10" class="w-full mt-2 px-4 py-2 rounded-xl text-black border-2 border-cyan-950">{{task.description}}</textarea>
+            </div>
+            <p class="text-black text-lg mb-2">Status</p>
+            <div class="mb-5">  
+                <input type="radio" id="todo" name="status" value="Todo">
+                <label for="todo">To do</label>
+                <input type="radio" id="done" name="status" value="Done" class="ml-6">
+                <label for="done">Done</label><br>                   
+            </div>
+            <div class="flex space-x-2">
+                <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Submit</button>
+                <p class="px-5 py-3 rounded-xl text-white bg-rose-500 hover:bg-rose-600"><a href="{{go_to_page}}">Cancel</a></p>
+            </div>
+                
+        </form>
+
+    </div>             
+
+{% endblock %}

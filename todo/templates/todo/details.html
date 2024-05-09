@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content%}
+    <h1 class="text-4xl font-bold text-center text-sky-950">{{task.name|title}}</h1>
+    <p class="mt-4 mb-2 text-center">Status: {% if task.is_done == False %} To do {% else %} Done {% endif %}</p>
+    <div class="flex items-center justify-center space-x-3">    
+        {% if task.is_done == False %}           
+        <a href="{% url 'todo:done' task.id %}">✔️</a>
+        {% endif %}
+        <a href="{% url 'todo:edit' task.id %}">✏️</a>
+        <a href="{% url 'todo:delete' task.id%}">🗑️</a>
+    </div>
+            
+    <div>
+        <h2 class="text-black text-lg">Description</h2>
+        <p class="w-full mt-2 mb-10 px-4 py-2 rounded-xl text-black border-2 border-cyan-950">{{task.description}}</p>
+    </div>
+        
+    <a href="{% url 'todo:dashboard' %}" class=" px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Go back to dashboard</a>
+{% endblock %}

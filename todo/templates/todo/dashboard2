@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content%}
+    <h1 class="text-4xl font-bold text-center text-sky-950 mb-3">Your Tasks</h1>
+    <p class="w-full mb-6 text-center text-red-500 font-bold hover:text-cyan-950"><a href="{% url 'todo:logout' %}" >(Logout)</a></p>
+    <form action="{% url 'todo:add_task' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="➕ Add Task" class="w-full bg-cyan-200 border-2 border-cyan-900 mb-2 p-2 rounded">
+    </form>
+
+    {% comment %} {% for task in tasks %}
+        {% if task.is_done == True %}
+            <div class="flex items-center justify-between space-x-2">
+                <div class='flex items-center border-2 bg-cyan-100 border-cyan-900 mb-2 p-2 w-2/3 rounded text-decoration-line: line-through'>{{task.name}}</div>
+                <div class="flex space-x-2 mb-2 ">
+                    <a href="{% url 'todo:todo' task.id %}" class="p-2 bg-cyan-600 rounded">Mark as Todo</a>
+                    <div class="flex items-center">
+                        <a href="{% url 'todo:details' task.id %}">👁️</a>
+                        <a href="{% url 'todo:edit' task.id %}">✏️</a>
+                        <a href="{% url 'todo:delete' task.id%}">🗑️</a>
+                    </div>
+                </div>                
+            </div>   
+        {% else %}   
+            <div class="flex items-center justify-between space-x-2">
+                <div class='flex items-center border-2 border-cyan-900 mb-2 p-2 w-2/3 rounded '>{{task.name}}</div>
+                <div class="flex space-x-2 mb-2">
+                    <a href="{% url 'todo:done' task.id %}" class="p-2 bg-cyan-500 rounded">Mark as Done</a>
+                    <div class="flex items-center">
+                        <a href="{% url 'todo:details' task.id %}">👁️</a>
+                        <a href="{% url 'todo:edit' task.id %}">✏️</a>
+                        <a href="{% url 'todo:delete' task.id%}">🗑️</a>
+                    </div>
+                </div>                
+            </div>      
+        {% endif %}         
+    {% endfor %} {% endcomment %}
+
+{% endblock %}
